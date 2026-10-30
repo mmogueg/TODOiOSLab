@@ -66,11 +66,13 @@ struct PersistentTodoScreen: View {
         let title = newTodoText.trimmingCharacters(in: .whitespacesAndNewlines)
         guard !title.isEmpty else { return }
         // EXTRA 2: inserta un StoredTodo en modelContext (una línea).
+        modelContext.insert(StoredTodo(title: title))
         if saveChanges() { newTodoText = "" }
     }
 
     private func deleteTodo(_ todo: StoredTodo) {
         // EXTRA 3: elimina todo de modelContext (una línea).
+        modelContext.delete(todo)
         saveChanges()
     }
 
